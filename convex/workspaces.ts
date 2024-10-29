@@ -13,6 +13,14 @@ const generateCode = () => {
   return code;
 };
 
+// const characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+// const generateCode = () => {
+//   const characters = "0123456789abcdefghijklmnopqrstuvwxyz";
+//   return Array.from(crypto.getRandomValues(new Uint8Array(6)), (byte) =>
+//     characters[byte % characters.length]
+//   ).join("");
+// };
+
 export const join = mutation({
   args: {
     joinCode: v.string(),
