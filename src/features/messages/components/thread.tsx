@@ -5,18 +5,20 @@ import { useRef, useState } from "react";
 import { AlertTriangle, Loader, XIcon } from "lucide-react";
 import { differenceInMinutes, format, isToday, isYesterday } from "date-fns";
 
-import { useGetMessage } from "@/features/messages/api/use-get-message";
-import { useGetMessages } from "@/features/messages/api/use-get-messages";
-import { useCurrentMember } from "@/features/members/api/use-current-member";
-import { useCreateMessage } from "@/features/messages/api/use-create-message";
-import { useGenerateUploadUrl } from "@/features/upload/api/use-generate-upload-url";
-
 import { Button } from "@/components/ui/button";
 import { Message } from "@/components/message";
-import { useChannelId } from "@/hooks/use-channel-id";
-import { useWorkspaceId } from "@/hooks/use-workspace-id";
 
 import { Id } from "../../../../convex/_generated/dataModel";
+
+import { useChannelId } from "@/hooks/useChannelId";
+import { useWorkspaceId } from "@/hooks/useWorkspaceId";
+
+import { useCreateMessage } from "../api/useCreateMessage";
+
+import { useGenerateUploadUrl } from "@/features/upload/api/useGenerateUploadUrl";
+import { useCurrentMember } from "@/features/members/api/useCurrentMember";
+import { useGetMessage } from "../api/useGetMessage";
+import { useGetMessages } from "../api/useGetMessages";
 
 const Editor = dynamic(() => import("@/components/editor"), { ssr: false });
 

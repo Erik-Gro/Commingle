@@ -4,8 +4,11 @@ import { useCallback, useMemo, useState } from "react";
 import { api } from "../../../../convex/_generated/api";
 import { Doc, Id } from "../../../../convex/_generated/dataModel";
 
-type RequestType = { name: string };
-type ResponseType = Id<"workspaces"> | null;
+type RequestType = {
+  workspaceId: Id<"workspaces">;
+  memberId: Id<"members">;
+};
+type ResponseType = Id<"conversations"> | null;
 
 type Options = {
   onSuccess?: (data: ResponseType) => void;
@@ -14,7 +17,7 @@ type Options = {
   throwError?: boolean;
 };
 
-export const useCreateWorkspace = () => {
+export const useCreateOrGetConversation = () => {
   const [data, setData] = useState<ResponseType>(null);
   const [error, setError] = useState<Error | null>(null);
   const [status, setStatus] = useState<
@@ -26,7 +29,7 @@ export const useCreateWorkspace = () => {
   const isError = useMemo(() => status === "error", [status]);
   const isSettled = useMemo(() => status === "settled", [status]);
 
-  const mutation = useMutation(api.workspaces.create);
+  const mutation = useMutation(api.conversations.createOrGet);
 
   const mutate = useCallback(
     async (values: RequestType, options?: Options) => {
@@ -36,7 +39,6 @@ export const useCreateWorkspace = () => {
         setStatus("pending");
 
         const response = await mutation(values);
-        setData(response); // Update everywhere if data needed from destructuring and not only from awaitin this fn
         options?.onSuccess?.(response);
         return response;
       } catch (error) {

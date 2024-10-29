@@ -12,6 +12,11 @@ import {
 
 import { Id } from "../../../../convex/_generated/dataModel";
 
+import { usePanel } from "@/hooks/usePanel";
+import { Toolbar } from "@/features/workspaces/components/toolbar/toolbar";
+import { Sidebar } from "@/features/workspaces/components/sidebar/sidebar";
+import { WorkspaceSidebar } from "@/features/workspaces/components/workspaceSidebar/workspaceSidebar";
+
 interface WorkspaceIdLayoutProps {
   children: React.ReactNode;
 }
